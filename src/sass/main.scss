@@ -1,0 +1,11 @@
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+
+@import "~vuetify/dist/vuetify.min.css";
+
+html, body, #app-main {
+    height: 100%;
+}
+
+.content {
+  margin-top: 50px;
+}
