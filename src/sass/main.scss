@@ -1,6 +1,7 @@
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 @import "~vuetify/dist/vuetify.min.css";
+@import "./vuetify-override/v-list.scss";
 
 html, body, #app-main {
     height: 100%;

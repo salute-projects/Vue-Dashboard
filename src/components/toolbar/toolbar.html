@@ -1,0 +1,60 @@
+<v-toolbar dark app fixed clipped-left>
+    <v-toolbar-side-icon @click.stop="toggleNavbar"></v-toolbar-side-icon>
+    <v-toolbar-title>SAFE EHR</v-toolbar-title>
+    <div class="d-flex align-center" style="margin-left: auto">
+      <v-menu offset-y transition="slide-x-transition" :nudge-left="20">
+        <v-btn icon large slot="activator">
+          <v-avatar size="32px" tile>
+            <img src="https://vuetifyjs.com/static/doc-images/logo.svg" alt="Vuetify">
+          </v-avatar>
+        </v-btn>
+        <v-card>
+          <v-list dense>
+            <v-list-tile @click="">
+              <v-list-tile-action class="small-tile-action">
+                <v-icon>person</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content class="pr-3 pl-1">
+                <v-list-tile-title>My profile</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile @click="">
+              <v-list-tile-action class="small-tile-action">
+                <v-icon>list</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content class="pr-3 pl-1">
+                <v-list-tile-title>Encounters</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile @click="">
+              <v-list-tile-action class="small-tile-action">
+                <v-icon>message</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content class="pr-3 pl-1">
+                <v-list-tile-title>Messages</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+          <v-divider></v-divider>
+          <v-list dense>
+            <v-list-tile @click="">
+              <v-list-tile-action class="small-tile-action">
+                <v-icon>settings</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content class="pr-3 pl-1">
+                <v-list-tile-title>Account settings</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile @click="login">
+              <v-list-tile-action class="small-tile-action">
+                <v-icon>power_settings_new</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content class="pr-3 pl-1">
+                <v-list-tile-title>Logout</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+        </v-card>
+      </v-menu>
+    </div>
+  </v-toolbar>

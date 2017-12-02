@@ -24,6 +24,8 @@ if (process.env.ENV === 'development' && module.hot) {
   makeHot(mainAppId, mainAppComponent, module.hot.accept('./components/main', () => reload(mainAppId, (<any>require('./components/main')).MainAppComponent)));
 }
 
+Vue.prototype.$eventHub = new Vue();
+
 new Vue({
   el: '#app-main',
   router: createRouter(),
