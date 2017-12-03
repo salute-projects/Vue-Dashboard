@@ -1,5 +1,6 @@
-const EVENT_IDENTIFIERS = {
-    LOGGED: Symbol('Logged')
-}
+const EVENTS = {
+    LOGGED: Symbol('Logged'),
+    TOGGLE_SIDEBAR: Symbol('ToggleSidebar')
+};
 
-export default EVENT_IDENTIFIERS;
+export default EVENTS;

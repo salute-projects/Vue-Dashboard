@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Vuetify from "vuetify";
+import Vuetify from 'vuetify';
 import { makeHot, reload } from './util/hot-reload';
 import { router } from './router';
 

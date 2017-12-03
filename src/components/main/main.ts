@@ -18,7 +18,6 @@ const toolbarComponent = () => import('../../components/toolbar').then(({ Toolba
 export class MainAppComponent extends Vue {
 
     mounted() {
-        RxEmitter.emit('1', 'test');
     }
 
     toggleNavbar() {

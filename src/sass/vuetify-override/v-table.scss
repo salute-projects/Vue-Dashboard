@@ -1,0 +1,47 @@
+.uppercase-headers {
+    .column {
+        text-transform: uppercase;
+    }
+}
+
+.table-badge {
+    width: 100%;
+    justify-content: center;
+    pointer-events: none;
+}
+
+
+.avatar-img-xs {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.table-toolbar {
+    .dense-text-field {
+        max-height: 42px;
+        min-height: 30px;
+        margin-left: 4px !important;
+
+        .input-group__details {
+            display: none;
+        }
+
+        .input-group__selections__comma {
+            font-size: 12px;
+            line-height: 1.2;
+        }
+    }
+
+    .search-field {
+        flex: 1 1 auto;
+        max-width: 400px;
+    }
+
+    .input-group {
+        label {
+            font-size: 14px;
+        }
+    }
+}

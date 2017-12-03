@@ -7,15 +7,15 @@ const homeComponent = () => import('./components/home').then(({ HomeComponent })
 const aboutComponent = () => import('./components/about').then(({ AboutComponent }) => AboutComponent);
 const listComponent = () => import('./components/list').then(({ ListComponent }) => ListComponent);
 const callbackComponent = () => import('./components/callback').then(({ CallbackComponent }) => CallbackComponent);
-// const homeComponent = () => import(/* webpackChunkName: 'home' */'./components/home').then(({ HomeComponent }) => HomeComponent);
-// const aboutComponent = () => import(/* webpackChunkName: 'about' */'./components/about').then(({ AboutComponent }) => AboutComponent);
-// const listComponent = () => import(/* webpackChunkName: 'list' */'./components/list').then(({ ListComponent }) => ListComponent);
+const encountersListComponent = () => import('./components/encounters/encounters-list/encounters_list')
+.then(({ EncountersListComponent }) => EncountersListComponent);
 
 if (process.env.ENV === 'development' && module.hot) {
   const homeModuleId = './components/home';
   const aboutModuleId = './components/about';
   const listModuleId = './components/list';
   const callbackModuleId = '/components/callback';
+  const encountersListModuleId = './components/encounters/encounters-list/encounters_list';
 
   // first arguments for `module.hot.accept` and `require` methods have to be static strings
   // see https://github.com/webpack/webpack/issues/5668
@@ -28,8 +28,12 @@ if (process.env.ENV === 'development' && module.hot) {
   makeHot(listModuleId, listComponent,
     module.hot.accept('./components/list', () => reload(listModuleId, (<any>require('./components/list')).ListComponent)));
 
-    makeHot(callbackModuleId, callbackComponent,
-      module.hot.accept('./components/callback', () => reload(callbackModuleId, (<any>require('./components/callback')).CallbackComponent)));
+  makeHot(callbackModuleId, callbackComponent,
+    module.hot.accept('./components/callback', () => reload(callbackModuleId, (<any>require('./components/callback')).CallbackComponent)));
+
+    makeHot(encountersListModuleId, encountersListComponent,
+      module.hot.accept('./components/encounters/encounters-list/encounters_list', 
+      () => reload(encountersListModuleId, (<any>require('./components/encounters/encounters-list/encounters_list')).EncountersListComponent)));
 }
 
 Vue.use(VueRouter);
@@ -50,6 +54,10 @@ export const createRoutes: () => RouteConfig[] = () => [
   {
     path: '/signin-auth0',
     component: callbackComponent
+  },
+  {
+    path: '/encounters',
+    component: encountersListComponent
   }
 ];
 

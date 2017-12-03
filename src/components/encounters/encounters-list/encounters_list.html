@@ -1,0 +1,44 @@
+<v-container grid-list-md grey lighten-4 fill-height>
+    <v-layout>
+        <v-flex xs10 offset-xs1>
+            <v-card flat>
+                <v-toolbar class="table-toolbar" color="blue darken-3" card flat dense>
+                    <v-text-field label="Search" class="dense-text-field search-field" prepend-icon="search" single-line solo></v-text-field>
+                    <v-spacer></v-spacer>
+                    <v-select v-bind:items="encounterTypes" class="dense-text-field" content-class="dense-select" label="Encounter type" v-model="typeFilter"
+                        dark multiple single-line dense v-show="showFilters"></v-select>
+                    <v-select v-bind:items="encounterPriorities" class="dense-text-field" content-class="dense-select" label="Encounter priority" v-model="priorityFilter"
+                        dark multiple single-line dense v-show="showFilters"></v-select>
+                    <v-select v-bind:items="encounterStatuses" class="dense-text-field" content-class="dense-select" label="Encounter status" v-model="statusFilter"
+                        dark multiple single-line dense v-show="showFilters"></v-select>
+                    <v-select v-bind:items="encounterStates" class="dense-text-field" content-class="dense-select" label="State" v-model="stateFilter"
+                        dark multiple single-line dense v-show="showFilters"></v-select>
+                    <v-btn icon @click.stop="toggleFilter">
+                        <v-icon color="white">filter_list</v-icon>
+                    </v-btn>
+                </v-toolbar>
+                <v-data-table v-bind:headers="headers" v-bind:items="dataSource.result" v-bind:pagination.sync="pagination" :total-items="dataSource.foundItemsCount"
+                    :rows-per-page-items="[10, 25, 50, 100]" :loading="isLoading" class="elevation-1 uppercase-headers">
+                    <template slot="items" slot-scope="props">
+                        <td>#{{ props.item.id }}</td>
+                        <td class="text-xs-right">
+                            <img class="avatar-img-xs" :src="getMemberPhoto(props.item.memberPhoto)"/>
+                        </td>
+                        <td class="text-xs-right">{{ props.item.memberName }}</td>
+                        <td class="text-xs-center">{{ props.item.typeString }}</td>
+                        <td class="text-xs-right">{{ props.item.assignedMemberName }}</td>
+                        <td class="text-xs-center">{{ getStateFullName(props.item.state) }}</td>
+                        <td class="text-xs-right">
+                            <v-chip v-if="props.item.priority === 2" color="green" class="table-badge" label text-color="white">Normal</v-chip>
+                            <v-chip v-if="props.item.priority === 1" color="red" class="table-badge" label text-color="white">Urgent</v-chip>
+                        </td>
+                        <td class="text-xs-right">{{ props.item.statusString }}</td>
+                        <td class="text-xs-right">
+                            <v-btn small color="primary">Open</v-btn>
+                        </td>
+                    </template>
+                </v-data-table>
+            </v-card>
+        </v-flex>
+    </v-layout>
+</v-container>
