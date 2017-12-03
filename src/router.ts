@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter, { Location, Route, RouteConfig } from 'vue-router';
 import { makeHot, reload } from './util/hot-reload';
+import { create } from 'domain';
 
 const homeComponent = () => import('./components/home').then(({ HomeComponent }) => HomeComponent);
 const aboutComponent = () => import('./components/about').then(({ AboutComponent }) => AboutComponent);
@@ -52,4 +53,4 @@ export const createRoutes: () => RouteConfig[] = () => [
   }
 ];
 
-export const createRouter = () => new VueRouter({ mode: 'history', routes: createRoutes() });
+export const router = new VueRouter({ mode: 'history', routes: createRoutes() });

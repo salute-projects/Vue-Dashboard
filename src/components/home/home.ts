@@ -11,4 +11,8 @@ export class HomeComponent extends Vue {
     repo: string = 'https://github.com/ducksoupdev/vue-webpack-typescript';
     mode: string = process.env.ENV;
 
+    mounter() {
+        debugger;
+    }
+
 }

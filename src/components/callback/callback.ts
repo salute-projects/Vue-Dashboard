@@ -13,7 +13,6 @@ export class CallbackComponent extends Vue {
     private authService: AuthService;
 
     mounted() {
-        debugger;
         this.authService = kernel.get<AuthService>(SERVICE_IDENTIFIERS.AUTH);
         this.authService.handleAuthentication();
     }

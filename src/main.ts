@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuetify from "vuetify";
 import { makeHot, reload } from './util/hot-reload';
-import { createRouter } from './router';
+import { router } from './router';
 
 Vue.use(Vuetify);
 
@@ -28,7 +28,7 @@ Vue.prototype.$eventHub = new Vue();
 
 new Vue({
   el: '#app-main',
-  router: createRouter(),
+  router: router,
   components: {
     'navbar': navbarComponent,
     'mainApp': mainAppComponent

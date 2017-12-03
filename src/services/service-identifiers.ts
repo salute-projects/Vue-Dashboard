@@ -1,6 +1,6 @@
 var SERVICE_IDENTIFIERS = {
     AUTH: Symbol('Auth'),
-    GLOBAL_STATE: Symbol('GlobalState')
+    HTTP_CLIENT: Symbol('HttpClient')
 }
 
 export default SERVICE_IDENTIFIERS;

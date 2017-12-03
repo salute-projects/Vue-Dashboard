@@ -1,7 +1,4 @@
 import { Component, Vue } from 'vue-property-decorator';
-import kernel from "../../services/kernel";
-import { AuthService } from "../../services/auth";
-import SERVICE_IDENTIFIERS from "../../services/service-identifiers";
 import { debug } from 'util';
 import { RxEmitter, rxEmit } from 'rxemitter';
 
@@ -19,12 +16,9 @@ const toolbarComponent = () => import('../../components/toolbar').then(({ Toolba
     }
 })
 export class MainAppComponent extends Vue {
-    private authService: AuthService;
 
     mounted() {
-        this.authService = kernel.get<AuthService>(SERVICE_IDENTIFIERS.AUTH);
         RxEmitter.emit('1', 'test');
-        // this.authService.login();
     }
 
     toggleNavbar() {
