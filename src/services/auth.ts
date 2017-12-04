@@ -4,6 +4,17 @@ import { RxEmitter, rxEmit } from 'rxemitter';
 import EVENTS from './event-identifiers';
 import { router } from '../router';
 
+import { UserManager, User } from "oidc-client";
+
+const settings: any = {
+    authority: 'http://localhost:9177/',
+    client_id: 'admin_console',
+    redirect_uri: 'http://localhost:23651/signin-auth0',
+    post_logout_redirect_uri: 'http://localhost:23651/signin-auth0',
+    response_type: 'id_token token',
+    scope: 'openid profile'
+};
+
 @injectable()
 export class AuthService {
     auth: WebAuth = new WebAuth({
@@ -16,7 +27,15 @@ export class AuthService {
     });
 
     login() {
-        this.auth.authorize();
+        debugger;
+        const mgr = new UserManager(settings);
+        mgr.signinRedirect().then(response => {
+            debugger;
+        }, error => {
+            debugger;
+        });
+
+        //this.auth.authorize();
     }
 
     handleAuthentication () {

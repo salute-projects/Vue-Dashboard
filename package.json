@@ -30,6 +30,7 @@
     "auth0-js": "^8.11.3",
     "axios": "~0.17.1",
     "inversify": "^4.5.2",
+    "oidc-client": "^1.4.1",
     "reflect-metadata": "^0.1.10",
     "rxemitter": "^0.2.8",
     "rxjs": "^5.5.2",
