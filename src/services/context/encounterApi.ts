@@ -1,7 +1,7 @@
 import { injectable, inject } from 'inversify';
 import { HttpClient } from '../httpClient';
 import SERVICES from '../service-identifiers';
-import { EncounterSearchRequest, EncounterPriority, EncounterStatus, EncounterType, EncounterDetails } from '../../dto/encounter/index';
+import { EncounterSearchRequest, EncounterPriority, EncounterStatus, EncounterType, EncounterDetails, EncounterSummary, EncountersFilterSummary } from '../../dto/encounter/index';
 import { SearchResult } from '../../dto/common/SearchResult';
 
 @injectable()
@@ -16,14 +16,19 @@ export class EncounterApi {
     private apiName = 'encounter';
     private urls = {
         all: `${this.apiName}/all`,
-        search: `${this.apiName}/search`
+        search: `${this.apiName}/searchSummary`,
+        getFilterSummary: `${this.apiName}/getFilterSummary`
     };
 
     all(): Promise<EncounterDetails[]> {
         return this.httpClient.get<EncounterDetails[]>(this.urls.all);
     }
 
-    search(request: EncounterSearchRequest): Promise<SearchResult<EncounterDetails>> {
+    search(request: EncounterSearchRequest): Promise<SearchResult<EncounterSummary>> {
         return this.httpClient.post(this.urls.search, request);
+    }
+
+    getFilterSummary(): Promise<EncountersFilterSummary> {
+        return this.httpClient.get(this.urls.getFilterSummary);
     }
 }

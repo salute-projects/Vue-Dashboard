@@ -8,7 +8,7 @@ export class HttpClient {
     private authService: AuthService;
     protected axios;
 
-    private baseUrl = 'http://stage.ursafe.io/api/';
+    private baseUrl = 'http://localhost:23650/api/';
 
     constructor( @inject(SERVICES.AUTH) authService: AuthService) {
         this.authService = authService;

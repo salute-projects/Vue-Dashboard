@@ -1,4 +1,8 @@
 import { EncounterPriority, EncounterStatus, EncounterType } from '../Enums';
+import { Member } from "../member/index";
+import { Physician } from "../physician/index";
+import { OrderDetails } from "../order/index";
+import { ImportRequestDetails } from "../importRequests";
 
 export class EncounterDetails {
     id: number;
@@ -17,9 +21,11 @@ export class EncounterDetails {
 
     assignedMemberId: number | undefined;
     assignedMemberName: string;
+    assignedMember: Member;
 
     physicianId: number | undefined;
     physicianName: string;
+    physician: Physician;
 
     clinicId: number | undefined;
     clinicName: string;
@@ -35,4 +41,7 @@ export class EncounterDetails {
     lastUpdatedMemberName: string;
 
     entityId: number;
+
+    order: OrderDetails;
+    importRequest: ImportRequestDetails;
 }

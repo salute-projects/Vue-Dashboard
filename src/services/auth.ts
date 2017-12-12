@@ -17,6 +17,13 @@ const settings: any = {
 
 @injectable()
 export class AuthService {
+
+    userManager: UserManager;
+
+    constructor() {
+        this.userManager = new UserManager(settings);
+    }
+
     auth: WebAuth = new WebAuth({
         domain: 'safemovement.auth0.com',
         clientID: 'HCwfM68KSoLI0mfoF5KG1pU2WPQg2BXZ',
@@ -27,18 +34,25 @@ export class AuthService {
     });
 
     login() {
-        debugger;
-        const mgr = new UserManager(settings);
-        mgr.signinRedirect().then(response => {
-            debugger;
-        }, error => {
-            debugger;
-        });
+        // const mgr = new UserManager(settings);
+        // this.userManager.signinRedirect().then(response => {
+        // }, error => {
+        // });
 
-        //this.auth.authorize();
+        this.auth.authorize();
     }
 
-    handleAuthentication () {
+    // handleAuthentication (user: User) {
+    //     if (user && user.id_token) {
+    //         this.setSession(user);
+    //         RxEmitter.emit(EVENTS.LOGGED.toString(), true);
+    //         router.push('/home');
+    //     } else {
+    //         RxEmitter.emit(EVENTS.LOGGED.toString(), false);
+    //     }
+    // }
+
+    handleAuthentication() {
         this.auth.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
@@ -77,4 +91,11 @@ export class AuthService {
         RxEmitter.emit(EVENTS.LOGGED.toString(), true);
         router.push('/home');
     }
+
+    // private setSession(user: User) {
+    //     const expiresAt = JSON.stringify(user.expires_at);
+    //     localStorage.setItem('access_token', user.access_token);
+    //     localStorage.setItem('id_token', user.id_token);
+    //     localStorage.setItem('expires_at', expiresAt);
+    // }
 }

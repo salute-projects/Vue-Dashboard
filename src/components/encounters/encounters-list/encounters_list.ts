@@ -12,8 +12,9 @@ import { Context } from '../../../services/context/context';
 import { HelpersService } from '../../../services/helpers';
 
 // dto
-import { EncounterDetails, EncounterPriority, EncounterSearchRequest, EncounterStatus, EncounterType } from '../../../dto/encounter/index';
+import { EncounterPriority, EncounterSearchRequest, EncounterStatus, EncounterType, EncounterSummary, EncountersFilterSummary } from '../../../dto/encounter/index';
 import { SearchResult } from '../../../dto/common/SearchResult';
+import { Role } from "../../../dto/Enums";
 
 import './encounters_list.scss';
 
@@ -30,8 +31,9 @@ export class EncountersListComponent extends Vue {
     private showFilters = false;
     private pagination: any = null;
 
+    private filterSummary: EncountersFilterSummary;
     private searchRequest: EncounterSearchRequest;
-    private dataSource = new SearchResult<EncounterDetails>();
+    private dataSource = new SearchResult<EncounterSummary>();
     private headers = [
         { text: 'ID #', value: 'id', align: 'center' },
         { text: '', value: 'memberPhoto', sortable: false },
@@ -76,6 +78,16 @@ export class EncountersListComponent extends Vue {
 
     mounted() {
         this.load();
+        this.getFiltersSummary();
+    }
+
+    private getFiltersSummary() {
+        this.context.encounters.getFilterSummary().then(response => {
+            debugger;
+            this.filterSummary = response;
+        }, error => {
+            debugger;
+        });
     }
 
     private load() {
@@ -108,18 +120,26 @@ export class EncountersListComponent extends Vue {
         });
     }
 
-    get encounterTypes() {
-        if (!this.dataSource.result)
-            return [];
-        return this.dataSource.result.map((item: EncounterDetails) => {
-            return item.typeString;
-        });
+    encounterTypes() {
+        const existingTypes = this.filterSummary && this.filterSummary ? this.filterSummary.types : [];
+        var result = Object.keys(EncounterType).map(key => {
+            return {
+                name: key,
+                isEnabled: existingTypes.indexOf(key) > -1 
+            }
+        }).filter(value => value.name !== 'None');
+        return result;
+        // if (!this.dataSource.result)
+        //     return [];
+        // return this.dataSource.result.map((item: EncounterSummary) => {
+        //     return item.typeString;
+        // });
     }
 
     get encounterPriorities() {
         if (!this.dataSource.result)
             return [];
-        return this.dataSource.result.map((item: EncounterDetails) => {
+        return this.dataSource.result.map((item: EncounterSummary) => {
             return item.priorityString;
         });
     }
@@ -127,7 +147,7 @@ export class EncountersListComponent extends Vue {
     get encounterStatuses() {
         if (!this.dataSource.result)
             return [];
-        return this.dataSource.result.map((item: EncounterDetails) => {
+        return this.dataSource.result.map((item: EncounterSummary) => {
             return item.statusString;
         });
     }
@@ -135,7 +155,7 @@ export class EncountersListComponent extends Vue {
     get encounterStates() {
         if (!this.dataSource.result)
             return [];
-        return this.dataSource.result.map((item: EncounterDetails) => {
+        return this.dataSource.result.map((item: EncounterSummary) => {
             return item.state;
         }).map(abbreviation => {
             return this.getStateFullName(abbreviation);
@@ -157,5 +177,9 @@ export class EncountersListComponent extends Vue {
 
     getMemberPhoto(url: string) {
         return url;
+    }
+
+    getAssigneeProfileUrl(row: EncounterSummary) {
+        return row.assigneeRole == Role.Physician ? '/physicians/details/' + row.assigneeId : '/members/details/' + row.assigneeId;
     }
 }
