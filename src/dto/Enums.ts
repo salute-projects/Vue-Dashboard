@@ -111,8 +111,7 @@ export enum ResultStatus {
     Cancelled = 3
 }
 
-export enum Role
-{
+export enum Role {
     Unknown = 0,
     User = 1,
     Physician = 2,

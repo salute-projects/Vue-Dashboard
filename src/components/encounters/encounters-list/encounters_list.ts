@@ -10,11 +10,13 @@ import SERVICES from '../../../services/service-identifiers';
 import kernel from '../../../services/kernel';
 import { Context } from '../../../services/context/context';
 import { HelpersService } from '../../../services/helpers';
+import { EncountersService } from '../encounters-service';
 
 // dto
 import { EncounterPriority, EncounterSearchRequest, EncounterStatus, EncounterType, EncounterSummary, EncountersFilterSummary } from '../../../dto/encounter/index';
 import { SearchResult } from '../../../dto/common/SearchResult';
-import { Role } from "../../../dto/Enums";
+import { Role } from '../../../dto/Enums';
+import { SelectItem } from '../../../models/selectItem';
 
 import './encounters_list.scss';
 
@@ -25,6 +27,7 @@ export class EncountersListComponent extends Vue {
 
     private context: Context;
     private helperService: HelpersService;
+    private encounterService: EncountersService;
     protected logger: Logger;
 
     private isLoading = false;
@@ -32,6 +35,10 @@ export class EncountersListComponent extends Vue {
     private pagination: any = null;
 
     private filterSummary: EncountersFilterSummary;
+    private priorityFilterSource: Array<SelectItem> = [];
+    private typeFilterSource: Array<SelectItem> = [];
+    private statusFilterSource: Array<SelectItem> = [];
+    private statesFilterSource: Array<SelectItem> = [];
     private searchRequest: EncounterSearchRequest;
     private dataSource = new SearchResult<EncounterSummary>();
     private headers = [
@@ -70,9 +77,16 @@ export class EncountersListComponent extends Vue {
         this.load();
     }
 
+    private search = '';
+    @Watch('search')
+    searchHandler() {
+        this.helperService.debounce(this.load(), 500);
+    }
+
     created() {
         this.context = kernel.get<Context>(SERVICES.CONTEXT);
         this.helperService = kernel.get<HelpersService>(SERVICES.HELPER_SERVICE);
+        this.encounterService = kernel.get<EncountersService>(SERVICES.ENCOUNTERS_SERVICE);
         this.searchRequest = new EncounterSearchRequest();
     }
 
@@ -83,10 +97,12 @@ export class EncountersListComponent extends Vue {
 
     private getFiltersSummary() {
         this.context.encounters.getFilterSummary().then(response => {
-            debugger;
             this.filterSummary = response;
+            this.priorityFilterSource = this.encounterService.getPrioritySelectItems(this.filterSummary.priorities);
+            this.typeFilterSource = this.encounterService.getTypeSelectItems(this.filterSummary.types);
+            this.statusFilterSource = this.encounterService.getStatusSelectItems(this.filterSummary.statuses);
+            this.statesFilterSource = this.encounterService.getStatesSelectItems(this.filterSummary.states); 
         }, error => {
-            debugger;
         });
     }
 
@@ -118,48 +134,7 @@ export class EncountersListComponent extends Vue {
         this.searchRequest.encounterStatusFilter = this.statusFilter.map((item: string) => {
             return EncounterStatus[item];
         });
-    }
-
-    encounterTypes() {
-        const existingTypes = this.filterSummary && this.filterSummary ? this.filterSummary.types : [];
-        var result = Object.keys(EncounterType).map(key => {
-            return {
-                name: key,
-                isEnabled: existingTypes.indexOf(key) > -1 
-            }
-        }).filter(value => value.name !== 'None');
-        return result;
-        // if (!this.dataSource.result)
-        //     return [];
-        // return this.dataSource.result.map((item: EncounterSummary) => {
-        //     return item.typeString;
-        // });
-    }
-
-    get encounterPriorities() {
-        if (!this.dataSource.result)
-            return [];
-        return this.dataSource.result.map((item: EncounterSummary) => {
-            return item.priorityString;
-        });
-    }
-
-    get encounterStatuses() {
-        if (!this.dataSource.result)
-            return [];
-        return this.dataSource.result.map((item: EncounterSummary) => {
-            return item.statusString;
-        });
-    }
-
-    get encounterStates() {
-        if (!this.dataSource.result)
-            return [];
-        return this.dataSource.result.map((item: EncounterSummary) => {
-            return item.state;
-        }).map(abbreviation => {
-            return this.getStateFullName(abbreviation);
-        });
+        this.searchRequest.term = this.search;
     }
 
     toggleFilter() {
@@ -176,10 +151,10 @@ export class EncountersListComponent extends Vue {
     }
 
     getMemberPhoto(url: string) {
-        return url;
+        return url ? url : '/assets/img/unknown-user.jpg';
     }
 
     getAssigneeProfileUrl(row: EncounterSummary) {
-        return row.assigneeRole == Role.Physician ? '/physicians/details/' + row.assigneeId : '/members/details/' + row.assigneeId;
+        return row.assigneeRole === Role.Physician ? '/physicians/details/' + row.assigneeId : '/members/details/' + row.assigneeId;
     }
 }

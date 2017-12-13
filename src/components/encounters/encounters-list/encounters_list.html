@@ -3,15 +3,21 @@
         <v-flex xs10 offset-xs1>
             <v-card flat>
                 <v-toolbar class="table-toolbar" color="blue darken-3" card flat dense>
-                    <v-text-field label="Search" class="dense-text-field search-field" prepend-icon="search" single-line solo></v-text-field>
+                    <v-text-field label="Search" class="dense-text-field search-field" prepend-icon="search" single-line solo
+                        v-model="search">
+                    </v-text-field>
                     <v-spacer></v-spacer>
-                    <v-select v-bind:items="encounterTypes()" class="dense-text-field" content-class="dense-select" label="Encounter type" v-model="typeFilter" item-value="name"
+                    <v-select v-bind:items="typeFilterSource" class="dense-text-field" content-class="dense-select" label="Encounter type" v-model="typeFilter" 
+                        item-value="value" item-text="name" item-disabled="disabled"
                         dark multiple single-line dense v-show="showFilters"></v-select>
-                    <v-select v-bind:items="encounterPriorities" class="dense-text-field" content-class="dense-select" label="Encounter priority" v-model="priorityFilter"
+                    <v-select v-bind:items="priorityFilterSource" class="dense-text-field" content-class="dense-select" label="Encounter priority" v-model="priorityFilter"
+                        item-value="value" item-text="name" item-disabled="disabled"
                         dark multiple single-line dense v-show="showFilters"></v-select>
-                    <v-select v-bind:items="encounterStatuses" class="dense-text-field" content-class="dense-select" label="Encounter status" v-model="statusFilter"
+                    <v-select v-bind:items="statusFilterSource" class="dense-text-field" content-class="dense-select" label="Encounter status" v-model="statusFilter"
+                        item-value="value" item-text="name" item-disabled="disabled"
                         dark multiple single-line dense v-show="showFilters"></v-select>
-                    <v-select v-bind:items="encounterStates" class="dense-text-field" content-class="dense-select" label="State" v-model="stateFilter"
+                    <v-select v-bind:items="statesFilterSource" class="dense-text-field" content-class="dense-select" label="State" v-model="stateFilter"
+                        item-value="value" item-text="name" item-disabled="disabled"
                         dark multiple single-line dense v-show="showFilters"></v-select>
                     <v-btn icon @click.stop="toggleFilter">
                         <v-icon color="white">filter_list</v-icon>

@@ -1,6 +1,8 @@
+import { EncounterPriority, EncounterStatus, EncounterType } from '../Enums';
+
 export class EncountersFilterSummary {
-    types: Array<string>;
-    priorities: Array<string>;
-    statuses: Array<string>;
+    types: Array<EncounterType>;
+    priorities: Array<EncounterPriority>;
+    statuses: Array<EncounterStatus>;
     states: Array<string>;
 }

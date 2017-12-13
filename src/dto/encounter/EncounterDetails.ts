@@ -1,8 +1,8 @@
 import { EncounterPriority, EncounterStatus, EncounterType } from '../Enums';
-import { Member } from "../member/index";
-import { Physician } from "../physician/index";
-import { OrderDetails } from "../order/index";
-import { ImportRequestDetails } from "../importRequests";
+import { Member } from '../member/index';
+import { Physician } from '../physician/index';
+import { OrderDetails } from '../order/index';
+import { ImportRequestDetails } from '../importRequests';
 
 export class EncounterDetails {
     id: number;

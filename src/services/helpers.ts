@@ -1,5 +1,6 @@
 import { injectable } from 'inversify';
 import { start } from 'repl';
+import { clearTimeout, setTimeout } from 'timers';
 
 @injectable()
 export class HelpersService {
@@ -15,6 +16,10 @@ export class HelpersService {
         if (!target)
             return '';
         return target.abbreviation;
+    }
+
+    getAllStates()  {
+        return this.states;
     }
 
     private states = [
@@ -255,4 +260,14 @@ export class HelpersService {
             'abbreviation': 'WY'
         }
     ];
+
+    debounce(func, delay = 300) {
+        var timer = null;
+        return function() {
+            var context = this;
+            var args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(() => { func.apply(this, args); }, delay)
+        }
+    }
 }

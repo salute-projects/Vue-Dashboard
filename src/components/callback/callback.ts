@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth';
 import kernel from '../../services/kernel';
 import SERVICE_IDENTIFIERS from '../../services/service-identifiers';
 
-import { UserManager, User } from "oidc-client";
+import { UserManager, User } from 'oidc-client';
 
 @Component({
     template: require('./callback.html')

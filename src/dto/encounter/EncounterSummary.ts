@@ -1,4 +1,4 @@
-import { EncounterPriority, EncounterStatus, EncounterType, Role } from "../Enums";
+import { EncounterPriority, EncounterStatus, EncounterType, Role } from '../Enums';
 
 export class EncounterSummary {
     id: number;

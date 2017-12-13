@@ -4,7 +4,7 @@ import { RxEmitter, rxEmit } from 'rxemitter';
 import EVENTS from './event-identifiers';
 import { router } from '../router';
 
-import { UserManager, User } from "oidc-client";
+import { UserManager, User } from 'oidc-client';
 
 const settings: any = {
     authority: 'http://localhost:9177/',
