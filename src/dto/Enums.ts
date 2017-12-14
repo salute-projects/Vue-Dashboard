@@ -118,3 +118,44 @@ export enum Role {
     PracticeAdmin = 3,
     SuperAdmin = 4
 }
+
+export enum DataTransferType {      
+    Interface = 0,
+    ManualEntry = 1
+}
+
+export enum RequestType {
+    ImportRequest = 0,
+    LabOrder = 1
+}
+
+export enum Gender {
+    Female = 'F',
+    Male = 'M',
+    Other = 'O',
+    Unknown = 'U'
+}
+
+export enum FollowUpState { 
+    FirstPhoneCall = 1,
+    SecondPhoneCall = 2,
+    FinalPhoneCall = 3,
+    FollowUpPreviouslyDone = 4,
+    NoResponse = 5
+}
+
+export enum TimelineItemType {
+    None = 0,
+    Information = 1,
+    ChangeLog = 2,
+    Note = 3,
+    Message = 4,
+    Action = 5
+}
+
+export enum TimelineContentType {
+    None = 0,
+    PlainText = 1,
+    Html = 2,
+    Markdown = 3
+}

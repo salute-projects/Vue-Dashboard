@@ -1,1 +1,41 @@
-<div>test</div>
+<v-container grid-list-md grey lighten-4 fill-height>
+    <v-layout>
+        <v-flex xs10 offset-xs1>
+            <v-tabs icons fixed flat>
+                <v-tabs-bar color="blue darken-3" dark>
+                    <v-toolbar-title class="subheading white--text">Encounter:</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-tabs-item key="patient-info" href="#patientInfo" ripple>
+                        <v-icon>info</v-icon>
+                        PATIENT INFO
+                    </v-tabs-item>
+                    <v-tabs-item key="encounter-history" href="#encounterHistory" ripple>
+                        <v-icon>timeline</v-icon>
+                        ENCOUNTER HISTORY
+                    </v-tabs-item>
+                    <v-tabs-item key="import-order" href="#importOrder" ripple>
+                        <v-icon>folder_open</v-icon>
+                        IMPORT ORDER
+                    </v-tabs-item>
+                </v-tabs-bar>
+                <v-tabs-items>
+                    <v-tabs-content key="patient-info" id="patientInfo">
+                        <v-card flat>
+                            <v-card-text>PATIENT INFO</v-card-text>
+                        </v-card>
+                    </v-tabs-content>
+                    <v-tabs-content key="encounter-history" id="encounterHistory">
+                        <v-card flat>
+                            <v-card-text>ENCOUNTER HISTORY</v-card-text>
+                        </v-card>
+                    </v-tabs-content>
+                    <v-tabs-content key="import-order" id="importOrder">
+                        <v-card flat>
+                            <v-card-text>IMPORT ORDER</v-card-text>
+                        </v-card>
+                    </v-tabs-content>
+                </v-tabs-items>
+            </v-tabs>
+        </v-flex>
+    </v-layout>
+</v-container>
