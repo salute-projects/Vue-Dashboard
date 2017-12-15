@@ -21,10 +21,26 @@ import './encounter-details.scss';
     template: require('./encounter-details.html')
 })
 export class EncountersDetailsComponent extends Vue {
+    private context: Context;
+    private model: EncounterDetails;
+
     currentId: number;
     
+    private availableStatuses = ["1", "2", "3"]
+
+    created() {
+        this.context = kernel.get<Context>(SERVICES.CONTEXT);
+    }
+
     mounted() {
+        debugger;
         this.currentId = parseInt(this.$route.params.id);
+        this.context.encounters.getById(this.currentId).then(result => {
+            debugger;
+            this.model = result;
+        }, error => {
+            debugger;
+        });
     }
     
 }

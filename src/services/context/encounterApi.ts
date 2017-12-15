@@ -17,7 +17,8 @@ export class EncounterApi {
     private urls = {
         all: `${this.apiName}/all`,
         search: `${this.apiName}/searchSummary`,
-        getFilterSummary: `${this.apiName}/getFilterSummary`
+        getFilterSummary: `${this.apiName}/getFilterSummary`,
+        get: `${this.apiName}/`
     };
 
     all(): Promise<EncounterDetails[]> {
@@ -30,5 +31,9 @@ export class EncounterApi {
 
     getFilterSummary(): Promise<EncountersFilterSummary> {
         return this.httpClient.get(this.urls.getFilterSummary);
+    }
+
+    getById(id: number): Promise<EncounterDetails> {
+        return this.httpClient.get(this.urls.get + id);
     }
 }
