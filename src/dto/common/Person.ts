@@ -1,5 +1,5 @@
-import { Address } from "./Address";
 import { Gender } from "../Enums";
+import { Address } from "./Address";
 
 export class Person {
     firstName: string;

@@ -1,4 +1,4 @@
-export class RequestDetail {
+export class RequestDetail { 
     requestType: number;
-    requestId: number;
+    requestId: string;
 }

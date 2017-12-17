@@ -3,21 +3,21 @@
         <v-flex xs10 offset-xs1>
             <v-tabs icons flat fixed>
                 <v-tabs-bar color="blue darken-3">
-                    <v-toolbar-title class="white--text body-2">ENCOUNTER: </v-toolbar-title>
-                    <v-select class="dense-text-field ml-5 select-body-2" content-class="dense-select" style="max-width: 200px;" v-bind:items="availableStatuses"
+                    <v-toolbar-title class="white--text subheading">ENCOUNTER: </v-toolbar-title>
+                    <v-select class="dense-text-field ml-5" content-class="dense-select" style="max-width: 200px;" v-bind:items="availableStatuses"
                         dark single-line dense label="STATUS" bottom>
                     </v-select>
                     <v-spacer></v-spacer>
                     <v-tabs-slider color="white"></v-tabs-slider>
-                    <v-tabs-item key="patientInfo" href="#patientInfo" class="white--text caption">
+                    <v-tabs-item key="patientInfo" href="#patientInfo" class="white--text">
                         <v-icon>account_box</v-icon>
                         PATIENT PROFILE
                     </v-tabs-item>
-                    <v-tabs-item key="encounterHistory" href="#encounterHistory" class="white--text caption">
+                    <v-tabs-item key="encounterHistory" href="#encounterHistory" class="white--text">
                         <v-icon>timeline</v-icon>
                         ENCOUNTER HISTORY
                     </v-tabs-item>
-                    <v-tabs-item key="importOrder" href="#importOrder" class="white--text caption">
+                    <v-tabs-item key="importOrder" href="#importOrder" class="white--text">
                         <v-icon>folder_open</v-icon>
                         IMPORT ORDER
                     </v-tabs-item>

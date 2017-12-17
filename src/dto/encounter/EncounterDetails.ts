@@ -3,9 +3,9 @@ import { Member } from '../member/index';
 import { Physician } from '../physician/index';
 import { OrderDetails } from '../order/index';
 import { ImportRequestDetails } from '../importRequests';
-import { EhrDiagnosticReport } from "../test/EhrDiagnosticReport";
-import { MemberTimeline } from "../timeline";
-import { DocumentDto } from "../document";
+import { EhrDiagnosticReport } from '../test/EhrDiagnosticReport';
+import { MemberTimeline } from '../timeline/MemberTimeline';
+import { DocumentDto } from '../document/DocumentDto';
 
 export class EncounterDetails {
     id: number;
@@ -49,7 +49,6 @@ export class EncounterDetails {
     order: OrderDetails;
     importRequest: ImportRequestDetails;
     labReport: EhrDiagnosticReport;
-    
     timelineItems: Array<MemberTimeline>;
 
     fhirDocuments: Array<DocumentDto>;

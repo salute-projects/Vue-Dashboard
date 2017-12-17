@@ -136,7 +136,7 @@ export enum Gender {
     Unknown = 'U'
 }
 
-export enum FollowUpState { 
+export enum FollowUpState {
     FirstPhoneCall = 1,
     SecondPhoneCall = 2,
     FinalPhoneCall = 3,

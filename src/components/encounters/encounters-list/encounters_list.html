@@ -24,7 +24,7 @@
                     </v-btn>
                 </v-toolbar>
                 <v-data-table v-bind:headers="headers" v-bind:items="dataSource.result" v-bind:pagination.sync="pagination" :total-items="dataSource.foundItemsCount"
-                    :rows-per-page-items="[10, 25, 50, 100]" :loading="isLoading" class="elevation-1 uppercase-headers">
+                    :rows-per-page-items="[10, 25, 50, 100]" :loading="isLoading" class="elevation-1 uppercase-headers"> 
                     <template slot="items" slot-scope="props">
                         <td>
                             <router-link class="anchor-link" :to="'/encounters/' + props.item.id">
