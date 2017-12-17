@@ -262,10 +262,10 @@ export class HelpersService {
     ];
 
     debounce(func, delay = 300) {
-        var timer = null;
+        let timer = null;
         return function() {
-            var context = this;
-            var args = arguments;
+            const context = this;
+            const args = arguments;
             clearTimeout(timer);
             timer = setTimeout(() => { func.apply(this, args); }, delay)
         }

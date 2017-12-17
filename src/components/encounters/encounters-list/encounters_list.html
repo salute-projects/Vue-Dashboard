@@ -8,16 +8,16 @@
                     </v-text-field>
                     <v-spacer></v-spacer>
                     <v-select v-bind:items="typeFilterSource" class="dense-text-field" content-class="dense-select" label="Encounter type" v-model="typeFilter" 
-                        item-value="value" item-text="name" item-disabled="disabled"
+                        item-value="value" item-text="title" item-disabled="disabled"
                         dark multiple single-line dense v-show="showFilters"></v-select>
                     <v-select v-bind:items="priorityFilterSource" class="dense-text-field" content-class="dense-select" label="Encounter priority" v-model="priorityFilter"
-                        item-value="value" item-text="name" item-disabled="disabled"
+                        item-value="value" item-text="title" item-disabled="disabled"
                         dark multiple single-line dense v-show="showFilters"></v-select>
                     <v-select v-bind:items="statusFilterSource" class="dense-text-field" content-class="dense-select" label="Encounter status" v-model="statusFilter"
-                        item-value="value" item-text="name" item-disabled="disabled"
+                        item-value="value" item-text="title" item-disabled="disabled"
                         dark multiple single-line dense v-show="showFilters"></v-select>
                     <v-select v-bind:items="statesFilterSource" class="dense-text-field" content-class="dense-select" label="State" v-model="stateFilter"
-                        item-value="value" item-text="name" item-disabled="disabled"
+                        item-value="value" item-text="title" item-disabled="disabled"
                         dark multiple single-line dense v-show="showFilters"></v-select>
                     <v-btn icon @click.stop="toggleFilter">
                         <v-icon color="white">filter_list</v-icon>

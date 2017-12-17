@@ -4,7 +4,8 @@
             <v-tabs icons flat fixed>
                 <v-tabs-bar color="blue darken-3">
                     <v-toolbar-title class="white--text body-2">ENCOUNTER: </v-toolbar-title>
-                    <v-select class="dense-text-field ml-5 select-body-2" content-class="dense-select" style="max-width: 200px;" v-bind:items="availableStatuses"
+                    <v-select class="dense-text-field ml-5 select-body-2" content-class="dense-select" style="max-width: 200px;" v-bind:items="statuses"
+                        item-value="value" item-text="title" v-model="model.status" 
                         dark single-line dense label="STATUS" bottom>
                     </v-select>
                     <v-spacer></v-spacer>

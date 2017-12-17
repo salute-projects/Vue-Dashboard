@@ -14,33 +14,38 @@ import { HelpersService } from '../../../services/helpers';
 // dto
 import { EncounterDetails, EncounterPriority, EncounterSearchRequest, EncounterStatus, EncounterType } from '../../../dto/encounter/index';
 import { SearchResult } from '../../../dto/common/SearchResult';
+import { EncountersService } from '../encounters-service';
 
 import './encounter-details.scss';
+import { SelectItem } from '../../../models/selectItem';
 
 @Component({
     template: require('./encounter-details.html')
 })
 export class EncountersDetailsComponent extends Vue {
     private context: Context;
-    private model: EncounterDetails;
+    private encounterService: EncountersService;
+    private model: EncounterDetails = new EncounterDetails();
+    private statuses: Array<SelectItem> = [];
 
     currentId: number;
-    
-    private availableStatuses = ["1", "2", "3"]
 
     created() {
         this.context = kernel.get<Context>(SERVICES.CONTEXT);
+        this.encounterService = kernel.get<EncountersService>(SERVICES.ENCOUNTERS_SERVICE);
     }
 
     mounted() {
-        debugger;
         this.currentId = parseInt(this.$route.params.id);
         this.context.encounters.getById(this.currentId).then(result => {
-            debugger;
             this.model = result;
+            this.init();
         }, error => {
-            debugger;
         });
     }
-    
-}
+  
+    private init() {
+        this.statuses = this.encounterService.getAvailableStatuses(this.model.status);
+        debugger;
+    }
+} 
