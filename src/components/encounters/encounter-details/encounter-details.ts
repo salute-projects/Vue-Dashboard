@@ -10,7 +10,7 @@ import SERVICES from '../../../services/service-identifiers';
 import kernel from '../../../services/kernel';
 import { Context } from '../../../services/context/context';
 import { HelpersService } from '../../../services/helpers';
-import { EncountersService } from "../encounters-service";
+import { EncountersService } from '../encounters-service';
 
 // dto
 import { EncounterDetails, EncounterPriority, EncounterSearchRequest, EncounterStatus, EncounterType } from '../../../dto/encounter/index';
@@ -19,6 +19,7 @@ import { SearchResult } from '../../../dto/common/SearchResult';
 import './encounter-details.scss';
 import { SelectItem } from '../../../models/selectItem';
 import { PatientDetails } from '../../../dto/patient/PatientDetails';
+import { PatientDetailsSummary } from '../../../dto/patient/PatientDetailsSummary';
 
 const patientDetailsComponent = () => import('../../../components/patient/patient-details/patient-details').then(({ PatientDetailsComponent }) => PatientDetailsComponent);
 
@@ -32,11 +33,11 @@ export class EncountersDetailsComponent extends Vue {
     private context: Context;
     private encounterService: EncountersService;
     private model: EncounterDetails = new EncounterDetails();
-    private patientDetails: PatientDetails = new PatientDetails();
+    private patientDetails: PatientDetailsSummary = new PatientDetailsSummary();
 
     currentId: number;
     
-    private statuses : SelectItem[] = [];
+    private statuses: SelectItem[] = [];
 
     created() {
         this.context = kernel.get<Context>(SERVICES.CONTEXT);
@@ -54,11 +55,9 @@ export class EncountersDetailsComponent extends Vue {
     
     initialize() {
         this.statuses = this.encounterService.getAvailableStatuses(this.model.status);
-        this.context.patients.getById(this.model.memberId).then(result => {
-            debugger;
+        this.context.patients.getSummary(this.model.memberId).then(result => {
             this.patientDetails = result;
         }, error => {
-            debugger;
         });
     }
 }

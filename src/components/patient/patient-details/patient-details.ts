@@ -10,14 +10,14 @@ import { EncounterDetails, EncounterPriority, EncounterSearchRequest, EncounterS
 import { SearchResult } from '../../../dto/common/SearchResult';
 
 import './patient-details.scss';
-import { Member } from '../../../dto/member/member';
+import { PatientDetailsSummary } from '../../../dto/patient/PatientDetailsSummary';
 
 @Component({
     template: require('./patient-details.html')
 })
 export class PatientDetailsComponent extends Vue {
     @Prop()
-    member: Member;
+    patientInfo: PatientDetailsSummary;
 
     mounted() {
     }

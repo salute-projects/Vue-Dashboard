@@ -1,5 +1,5 @@
 export class SelectItem {
-    constructor(value: any, title: string, disabled: boolean = false, icon: string, color: string = "green") {
+    constructor(value: any, title: string, disabled: boolean = false, icon: string, color: string = 'green') {
         this.value = value;
         this.title = title;
         this.icon = icon;

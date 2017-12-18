@@ -4,6 +4,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "./vuetify-override/v-list.scss";
 @import "./vuetify-override/v-table.scss";
 @import "./vuetify-override/v-select.scss";
+@import "./vuetify-override/v-expansion-panel.scss";
 
 html, body, #app-main {
     height: 100%;
@@ -14,5 +15,18 @@ html, body, #app-main {
 
     &:hover {
         color: #115293;
+    }
+}
+
+.patient-photo {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
     }
 }

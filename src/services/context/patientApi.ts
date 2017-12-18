@@ -2,6 +2,7 @@ import { injectable, inject } from 'inversify';
 import { HttpClient } from '../httpClient';
 import SERVICES from '../service-identifiers';
 import { PatientDetails } from '../../dto/patient/PatientDetails';
+import { PatientDetailsSummary } from '../../dto/patient/PatientDetailsSummary';
 
 @injectable()
 export class PatientApi {
@@ -14,10 +15,15 @@ export class PatientApi {
 
     private apiName = 'patient';
     private urls = {
-        get: `${this.apiName}/`
+        get: `${this.apiName}/`,
+        getSummary: `${this.apiName}/summary/`
     };
 
     getById(id: number): Promise<PatientDetails> {
         return this.httpClient.get(this.urls.get + id);
+    }
+
+    getSummary(id: number): Promise<PatientDetailsSummary> {
+        return this.httpClient.get(this.urls.getSummary + id);
     }
 }

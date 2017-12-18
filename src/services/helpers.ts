@@ -267,7 +267,7 @@ export class HelpersService {
             const context = this;
             const args = arguments;
             clearTimeout(timer);
-            timer = setTimeout(() => { func.apply(this, args); }, delay)
-        }
+            timer = setTimeout(() => { func.apply(this, args); }, delay);
+        };
     }
 }

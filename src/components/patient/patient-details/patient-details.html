@@ -1,17 +1,70 @@
-<v-layout row wrap>
-    <v-flex xs12>
-        <v-card>
-            <v-card-title primary-title>
-                <div class="col-xs-12">
-                    <h5 class="headline mb-0">
-                        <v-icon large>assignment</v-icon>
-                        PATIENT DETAILS
-                    </h5>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn flat color="orange">Close</v-btn>
-            </v-card-actions>
-        </v-card>
-    </v-flex>
-</v-layout>
+<v-container class="white">
+    <v-layout row wrap>
+        <v-flex xs12>
+            <v-expansion-panel flat expand>
+                <v-expansion-panel-content :key="mainInfo" class="custom-theme-expansion" value="true">
+                    <div slot="header">PATIENT DETAILS</div>
+                    <v-card tile>
+                        <main class="expansion-panel-content">
+                            <v-container>
+                                <v-layout row wrap>
+                                    <v-flex xs2>
+                                        <div class="patient-photo">
+                                            <img :src="patientInfo.avatarUrl || '/assets/img/unknown-user.jpg'" alt="" width="100px">
+                                        </div>
+                                    </v-flex>
+                                    <v-flex xs10>
+                                        <v-container fluid>
+                                            <v-layout row>
+                                                <v-flex xs2>
+                                                    <div class="subheading">NAME:</div>
+                                                </v-flex>
+                                                <v-flex xs4>
+                                                    <label>{{patientInfo.firstName || 'Unknown'}}</label>
+                                                </v-flex>
+                                                <v-flex xs2>
+                                                     <v-subheader>DATE OF BIRTH:</v-subheader>
+                                                </v-flex>
+                                                <v-flex xs4>
+                                                    <label>{{patientInfo.birthDate || 'Unknown'}}</label>
+                                                </v-flex>
+                                            </v-layout>
+                                            <v-layout row>
+                                                <v-flex xs2>
+                                                    <v-subheader>GENDER:</v-subheader>
+                                                </v-flex>
+                                                <v-flex xs4>
+                                                    <label>{{patientInfo.gender || 'Unknown'}}</label>
+                                                </v-flex>
+                                                <v-flex xs2>
+                                                     <v-subheader>AGE:</v-subheader>
+                                                </v-flex>
+                                                <v-flex xs4>
+                                                    <label>{{patientInfo.age || 'Unknown'}}</label>
+                                                </v-flex>
+                                            </v-layout>  
+                                            <v-layout row>
+                                                <v-flex xs2>
+                                                    <v-subheader>PHONE:</v-subheader>
+                                                </v-flex>
+                                                <v-flex xs4>
+                                                    <label>{{patientInfo.mobileNumber || 'Unknown'}}</label>
+                                                </v-flex>
+                                                <v-flex xs2>
+                                                     <v-subheader>AGE:</v-subheader>
+                                                </v-flex>
+                                                <v-flex xs4>
+                                                    <label>{{patientInfo.age || 'Unknown'}}</label>
+                                                </v-flex>
+                                            </v-layout>        
+                                        </v-container>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </main>
+                    </v-card>
+                </v-expansion-panel-content>
+            </v-expansion-panel>
+        </v-flex>
+    </v-layout>
+</v-container>
