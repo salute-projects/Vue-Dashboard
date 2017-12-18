@@ -1,5 +1,5 @@
 // system
-import { Component, Vue, Emit, Watch } from 'vue-property-decorator';
+import { Component, Vue, Emit, Watch, Prop } from 'vue-property-decorator';
 import { Logger } from '../../../util/log';
 import { debug } from 'util';
 import { fail } from 'assert';
@@ -10,21 +10,15 @@ import { EncounterDetails, EncounterPriority, EncounterSearchRequest, EncounterS
 import { SearchResult } from '../../../dto/common/SearchResult';
 
 import './patient-details.scss';
+import { Member } from '../../../dto/member/member';
 
 @Component({
     template: require('./patient-details.html')
 })
 export class PatientDetailsComponent extends Vue {
-    private model: EncounterDetails;
-
-    currentId: number;
-
-    created() {
-    }
+    @Prop()
+    member: Member;
 
     mounted() {
-    }
-    
-    initialize() {
     }
 }

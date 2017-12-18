@@ -6,7 +6,8 @@ const SERVICES = {
     // components services
     ENCOUNTERS_SERVICE: Symbol('EncountersService'),
     // apis
-    ENCOUNTERS_API: Symbol('EncountersApi')
+    ENCOUNTERS_API: Symbol('EncountersApi'),
+    PATIENT_API: Symbol('PatientApi')
 };
 
 export default SERVICES;

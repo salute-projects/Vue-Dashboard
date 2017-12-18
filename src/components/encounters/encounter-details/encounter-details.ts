@@ -18,6 +18,7 @@ import { SearchResult } from '../../../dto/common/SearchResult';
 
 import './encounter-details.scss';
 import { SelectItem } from '../../../models/selectItem';
+import { PatientDetails } from '../../../dto/patient/PatientDetails';
 
 const patientDetailsComponent = () => import('../../../components/patient/patient-details/patient-details').then(({ PatientDetailsComponent }) => PatientDetailsComponent);
 
@@ -31,6 +32,7 @@ export class EncountersDetailsComponent extends Vue {
     private context: Context;
     private encounterService: EncountersService;
     private model: EncounterDetails = new EncounterDetails();
+    private patientDetails: PatientDetails = new PatientDetails();
 
     currentId: number;
     
@@ -42,17 +44,21 @@ export class EncountersDetailsComponent extends Vue {
     }
 
     mounted() {
-        debugger;
         this.currentId = parseInt(this.$route.params.id);
         this.context.encounters.getById(this.currentId).then(result => {
-            debugger;
             this.model = result;
+            this.initialize();
         }, error => {
-            debugger;
         });
     }
     
     initialize() {
         this.statuses = this.encounterService.getAvailableStatuses(this.model.status);
+        this.context.patients.getById(this.model.memberId).then(result => {
+            debugger;
+            this.patientDetails = result;
+        }, error => {
+            debugger;
+        });
     }
 }
