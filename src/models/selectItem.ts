@@ -1,17 +1,15 @@
-import { directiveConfig } from 'vuetify/src/util/helpers';
-
 export class SelectItem {
-    constructor(value: any, title: string, disabled: boolean, icon: string, color: string) {
+    constructor(value: any, title: string, disabled: boolean = false, icon: string, color: string = "green") {
         this.value = value;
         this.title = title;
-        this.disabled = disabled;
         this.icon = icon;
         this.color = color;
+        this.disabled = disabled;
     }
 
     value: any;
     title: string;
-    disabled: boolean;
     icon: string;
+    disabled: boolean;
     color: string;
 }

@@ -3,7 +3,7 @@ import { start } from 'repl';
 import { EncounterPriority, EncounterType, EncounterStatus } from '../../dto/encounter';
 import { SelectItem } from '../../models/selectItem';
 import { HelpersService } from '../../services/helpers';
-import { PageRequest } from '../../dto/common/PageRequest';
+import { EncounterStatusSelectItem } from "./models/EncounterStatusSelectItem";
 
 @injectable()
 export class EncountersService {
@@ -15,18 +15,18 @@ export class EncountersService {
         for (let n in EncounterPriority) {
             if (typeof EncounterPriority[n] === 'number' && n !== 'None') {
                 const enumProperty = EncounterPriority[<string>n];
-                result.push(new SelectItem(<any>EncounterPriority[n], this.getPriorityString(enumProperty), existing.indexOf(enumProperty) === -1, '', ''));
+                result.push(new SelectItem(<any>EncounterPriority[n], this.getPriorityString(enumProperty), existing.indexOf(enumProperty) === -1, "", ""))
             }
         }
         return this.enabledFirst(result);
-    } 
+    }
 
     getTypeSelectItems(existing: Array<EncounterType>): Array<SelectItem> {
         const result: Array<SelectItem> = [];
         for (let n in EncounterType) {
             if (typeof EncounterType[n] === 'number' && n !== 'None') {
                 const enumProperty = EncounterType[<string>n];
-                result.push(new SelectItem(<any>EncounterType[n], this.getTypeString(enumProperty), existing.indexOf(enumProperty) === -1, '', ''));
+                result.push(new SelectItem(<any>EncounterType[n], this.getTypeString(enumProperty), existing.indexOf(enumProperty) === -1, "", ""))
             }
         }
         return this.enabledFirst(result);
@@ -37,7 +37,7 @@ export class EncountersService {
         for (let n in EncounterStatus) {
             if (typeof EncounterStatus[n] === 'number' && n !== 'None') {
                 const enumProperty = EncounterStatus[<string>n];
-                result.push(new SelectItem(<any>EncounterStatus[n], this.getStatusString(enumProperty), existing.indexOf(enumProperty) === -1, '', ''));
+                result.push(new SelectItem(<any>EncounterStatus[n], this.getStatusString(enumProperty), existing.indexOf(enumProperty) === -1, "", ""))
             }
         }
         return this.enabledFirst(result);
@@ -46,8 +46,8 @@ export class EncountersService {
     getStatesSelectItems(existing: Array<string>): Array<SelectItem> {
         const allStates = this.helpersService.getAllStates();
         const result = allStates.map(item => {
-            return new SelectItem(item.abbreviation, item.name, existing.indexOf(item.abbreviation) === -1, '', '');
-        });
+            return new SelectItem(item.abbreviation, item.name, existing.indexOf(item.abbreviation) === -1, "", "");
+        })
         return this.enabledFirst(result);
     }
 
