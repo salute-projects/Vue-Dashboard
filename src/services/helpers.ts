@@ -270,4 +270,8 @@ export class HelpersService {
             timer = setTimeout(() => { func.apply(this, args); }, delay);
         };
     }
+
+    get genders() {
+        return ["male", "female"];
+    }
 }

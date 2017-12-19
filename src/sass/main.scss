@@ -5,6 +5,8 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "./vuetify-override/v-table.scss";
 @import "./vuetify-override/v-select.scss";
 @import "./vuetify-override/v-expansion-panel.scss";
+@import "./vuetify-override/v-input.scss";
+@import "./vuetify-override/v-switch.scss";
 
 html, body, #app-main {
     height: 100%;
