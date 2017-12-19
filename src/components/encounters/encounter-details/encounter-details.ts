@@ -30,6 +30,7 @@ const patientDetailsComponent = () => import('../../../components/patient/patien
     }
 })
 export class EncountersDetailsComponent extends Vue {
+    private loading: boolean = false;
     private context: Context;
     private encounterService: EncountersService;
     private model: EncounterDetails = new EncounterDetails();
@@ -45,11 +46,13 @@ export class EncountersDetailsComponent extends Vue {
     }
 
     mounted() {
+        this.loading = true;
         this.currentId = parseInt(this.$route.params.id);
         this.context.encounters.getById(this.currentId).then(result => {
             this.model = result;
             this.initialize();
         }, error => {
+            this.loading = false;
         });
     }
     
@@ -57,6 +60,7 @@ export class EncountersDetailsComponent extends Vue {
         this.statuses = this.encounterService.getAvailableStatuses(this.model.status);
         this.context.patients.getSummary(this.model.memberId).then(result => {
             this.patientDetails = result;
+            this.loading = false;
         }, error => {
         });
     }

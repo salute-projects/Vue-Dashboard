@@ -24,8 +24,15 @@
                     </v-tabs-item>
                 </v-tabs-bar>
                 <v-tabs-items>
+                    <v-container fluid v-if="loading">
+                        <v-layout row wrap>
+                            <v-flex class="text-xs-center">
+                                <v-progress-circular indeterminate v-bind:size="150" color="primary"></v-progress-circular>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
                     <v-tabs-content key="patientInfo" id="patientInfo">
-                        <patientDetails :patientInfo="patientDetails"></patientDetails>
+                        <patientDetails v-if="!loading" :patientInfo="patientDetails"></patientDetails>
                     </v-tabs-content>
                     <v-tabs-content key="encounterHistory" id="encounterHistory">
                         eHis

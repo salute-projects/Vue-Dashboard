@@ -4,6 +4,7 @@ import Vuetify from 'vuetify';
 import { makeHot, reload } from './util/hot-reload';
 import { router } from './router';
 
+Vue.use(require('vue-moment'));
 Vue.use(Vuetify);
 
 const navbarComponent = () => import('./components/navbar').then(({ NavbarComponent }) => NavbarComponent);

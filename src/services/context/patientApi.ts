@@ -20,10 +20,10 @@ export class PatientApi {
     };
 
     getById(id: number): Promise<PatientDetails> {
-        return this.httpClient.get(this.urls.get + id);
+        return this.httpClient.get<PatientDetails>(this.urls.get + id);
     }
 
     getSummary(id: number): Promise<PatientDetailsSummary> {
-        return this.httpClient.get(this.urls.getSummary + id);
+        return this.httpClient.get<PatientDetailsSummary>(this.urls.getSummary + id);
     }
 }

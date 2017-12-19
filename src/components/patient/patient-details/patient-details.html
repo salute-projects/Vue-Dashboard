@@ -8,61 +8,80 @@
                         <main class="expansion-panel-content">
                             <v-container>
                                 <v-layout row wrap>
-                                    <v-flex xs2>
+                                    <v-flex xs1>
                                         <div class="patient-photo">
                                             <img :src="patientInfo.avatarUrl || '/assets/img/unknown-user.jpg'" alt="" width="100px">
                                         </div>
                                     </v-flex>
-                                    <v-flex xs10>
+                                    <v-flex xs11>
                                         <v-container fluid>
-                                            <v-layout row>
+                                            <v-layout row justify-space-around>
                                                 <v-flex xs2>
-                                                    <div class="subheading">NAME:</div>
+                                                    <div class="subheading font-bold m-t-1 mr-4 text-xs-right">
+                                                        <v-icon class="mr-1">fa-user</v-icon>
+                                                        NAME:
+                                                    </span>
                                                 </v-flex>
-                                                <v-flex xs4>
-                                                    <label>{{patientInfo.firstName || 'Unknown'}}</label>
+                                                <v-flex xs3>
+                                                    <div class="subheading text-xs-left">{{patientInfo.firstName + ' ' + patientInfo.lastName || 'Unknown'}}</div>
+                                                </v-flex>
+                                                 <v-flex xs2>
+                                                    <div class="subheading font-bold m-t-1 mr-4 text-xs-right">
+                                                        <v-icon class="mr-1">fa-mobile</v-icon>
+                                                        PHONE:
+                                                    </div>
                                                 </v-flex>
                                                 <v-flex xs2>
-                                                     <v-subheader>DATE OF BIRTH:</v-subheader>
+                                                    <div class="subheading text-xs-left">{{patientInfo.mobileNumber || 'Unknown'}}</div>
                                                 </v-flex>
-                                                <v-flex xs4>
-                                                    <label>{{patientInfo.birthDate || 'Unknown'}}</label>
+                                                <v-flex xs2>
+                                                    <div class="subheading font-bold m-t-1 mr-4 text-xs-right">
+                                                        <v-icon class="mr-1">fa-venus-mars</v-icon>
+                                                        <span>GENDER:</span>
+                                                    </div>
+                                                </v-flex>
+                                                <v-flex xs1>
+                                                    <div class="subheading text-capitalize text-xs-left">
+                                                        <v-icon v-if="patientInfo.gender === 'male'" class="mr-1">fa-mars</v-icon>
+                                                        <v-icon v-if="patientInfo.gender === 'female'" class="mr-1">fa-venus</v-icon>
+                                                        <span>{{patientInfo.gender || 'Unknown'}}</span>
+                                                    </div>
                                                 </v-flex>
                                             </v-layout>
-                                            <v-layout row>
-                                                <v-flex xs2>
-                                                    <v-subheader>GENDER:</v-subheader>
+                                            <v-layout row class="mt-3">
+                                                 <v-flex xs2>
+                                                    <div class="subheading font-bold m-t-1 mr-4 text-xs-right">
+                                                        DATE OF BIRTH:
+                                                    </div>
                                                 </v-flex>
                                                 <v-flex xs4>
-                                                    <label>{{patientInfo.gender || 'Unknown'}}</label>
+                                                    <div class="subheading text-xs-left">{{patientInfo.birthDate | moment("dddd, MMMM Do YYYY") || 'Unknown'}}</div>
                                                 </v-flex>
-                                                <v-flex xs2>
-                                                     <v-subheader>AGE:</v-subheader>
-                                                </v-flex>
-                                                <v-flex xs4>
-                                                    <label>{{patientInfo.age || 'Unknown'}}</label>
-                                                </v-flex>
-                                            </v-layout>  
-                                            <v-layout row>
-                                                <v-flex xs2>
-                                                    <v-subheader>PHONE:</v-subheader>
+                                                <v-flex xs1>
+                                                     <div class="subheading font-bold m-t-1 mr-4 text-xs-right">AGE:</div>
                                                 </v-flex>
                                                 <v-flex xs4>
-                                                    <label>{{patientInfo.mobileNumber || 'Unknown'}}</label>
+                                                    <div class="subheading text-xs-left">{{patientInfo.age || 'Unknown'}}</div>
                                                 </v-flex>
-                                                <v-flex xs2>
-                                                     <v-subheader>AGE:</v-subheader>
-                                                </v-flex>
-                                                <v-flex xs4>
-                                                    <label>{{patientInfo.age || 'Unknown'}}</label>
-                                                </v-flex>
-                                            </v-layout>        
+                                            </v-layout>      
                                         </v-container>
                                     </v-flex>
                                 </v-layout>
                             </v-container>
                         </main>
                     </v-card>
+                </v-expansion-panel-content>
+                <v-expansion-panel-content :key="personalInfo" class="custom-theme-expansion" value="true">
+                    <div slot="header">PERSONAL INFORMATION</div>
+                    <v-card tile>
+                        <main class="expansion-panel-content">
+                            <v-container>
+                                <v-layout row wrap>
+
+                                </v-layout>
+                            </v-container>
+                        </main>
+                    </v-container>
                 </v-expansion-panel-content>
             </v-expansion-panel>
         </v-flex>
