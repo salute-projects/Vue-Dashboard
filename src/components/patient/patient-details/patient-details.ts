@@ -22,8 +22,8 @@ import { SelectItem } from '../../../models/selectItem';
     template: require('./patient-details.html')
 })
 export class PatientDetailsComponent extends Vue {
-    @Prop()
-    patientInfo: PatientDetailsSummary;
+    @Prop({ default: new PatientDetailsSummary() })
+    patientInfo: any;
 
     private butler: HelpersService;
     private genders: Array<string> = [];

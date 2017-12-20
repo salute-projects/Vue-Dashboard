@@ -58,7 +58,7 @@ export class EncountersDetailsComponent extends Vue {
     
     initialize() {
         this.statuses = this.encounterService.getAvailableStatuses(this.model.status);
-        this.context.patients.getSummary(this.model.memberId).then(result => {
+        this.context.patients.getSummary(this.model.memberId).then((result: PatientDetailsSummary) => {
             this.patientDetails = result;
             this.loading = false;
         }, error => {

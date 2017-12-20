@@ -3,7 +3,7 @@ import { Component, Vue, Emit } from 'vue-property-decorator';
 import { Logger } from '../../util/log';
 import { debug } from 'util';
 import { fail } from 'assert';
-import { RxEmitter, RxSubscribe } from 'rxemitter';
+import { RxEmitter } from 'rxemitter';
 
 // custom
 import kernel from '../../services/kernel';
